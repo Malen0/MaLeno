@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog — ML/DL</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header" role="banner">
+    <a class="site-logo" href="/">ML/DL</a>
+    <button
+      type="button"
+      class="nav-toggle"
+      aria-label="Open menu"
+      aria-expanded="false"
+      aria-controls="primary-nav"
+    >
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <nav id="primary-nav" aria-label="Primary">
+      <ul class="nav-menu">
+        <li><a href="/" data-nav="home">Home</a></li>
+        <li><a href="/#about">About</a></li>
+        <li><a href="/#projects">Projects</a></li>
+        <li><a href="/blog" data-nav="blog">Blog</a></li>
+        <li><a href="/#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main">
+    <div class="blog-page">
+      <h1>Blog</h1>
+      <p class="blog-intro">Notes on AI, ML engineering, and tooling. Placeholder posts below.</p>
+
+      <!-- Article grid: 2 columns desktop, 1 on mobile -->
+      <div class="article-grid" role="list">
+
+        <article class="article-card" role="listitem">
+          <div class="meta">
+            <span class="category">AI</span>
+            <time class="date" datetime="2026-03">March 2026</time>
+          </div>
+          <h2>The Future of Large Language Models in 2026</h2>
+          <p class="excerpt">
+            Exploring how LLMs are evolving beyond text generation into autonomous agents and reasoning systems.
+          </p>
+          <a class="read-more" href="#">Read more →</a>
+        </article>
+
+        <article class="article-card" role="listitem">
+          <div class="meta">
+            <span class="category">Machine Learning</span>
+            <time class="date" datetime="2026-02">February 2026</time>
+          </div>
+          <h2>Building Recommendation Systems with Python</h2>
+          <p class="excerpt">
+            A practical guide to building scalable recommendation engines using collaborative filtering and matrix factorization.
+          </p>
+          <a class="read-more" href="#">Read more →</a>
+        </article>
+
+        <article class="article-card" role="listitem">
+          <div class="meta">
+            <span class="category">Web Development</span>
+            <time class="date" datetime="2026-01">January 2026</time>
+          </div>
+          <h2>Getting Started with UV: The Fastest Python Package Manager</h2>
+          <p class="excerpt">
+            How UV is replacing pip and conda as the go-to tool for modern Python development workflows.
+          </p>
+          <a class="read-more" href="#">Read more →</a>
+        </article>
+
+        <article class="article-card" role="listitem">
+          <div class="meta">
+            <span class="category">Deep Learning</span>
+            <time class="date" datetime="2025-12">December 2025</time>
+          </div>
+          <h2>Deep Learning vs Traditional ML: When to Use Each</h2>
+          <p class="excerpt">
+            A practical breakdown of when deep learning outperforms classical ML approaches and when it doesn't.
+          </p>
+          <a class="read-more" href="#">Read more →</a>
+        </article>
+
+      </div>
+    </div>
+  </main>
+
+  <script src="/static/js/nav.js" defer></script>
+</body>
+</html>
