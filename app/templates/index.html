@@ -10,6 +10,12 @@
       document.documentElement.setAttribute("data-theme", theme);
     })();
   </script>
+  <script>
+    (function () {
+      var lang = localStorage.getItem("lang") || "en";
+      document.documentElement.setAttribute("lang", lang);
+    })();
+  </script>
   <!-- JetBrains Mono (Google Fonts) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -36,13 +42,18 @@
       </button>
       <nav id="primary-nav" aria-label="Primary">
         <ul class="nav-menu">
-          <li><a href="/" data-nav="home">Home</a></li>
-          <li><a href="/#about">About</a></li>
-          <li><a href="/#projects">Projects</a></li>
-          <li><a href="/blog" data-nav="blog">Blog</a></li>
-          <li><a href="/#contact">Contact</a></li>
+          <li><a href="/" data-nav="home" data-i18n="nav_home">Home</a></li>
+          <li><a href="/#about" data-i18n="nav_about">About</a></li>
+          <li><a href="/#projects" data-i18n="nav_projects">Projects</a></li>
+          <li><a href="/blog" data-nav="blog" data-i18n="nav_blog">Blog</a></li>
+          <li><a href="/#contact" data-i18n="nav_contact">Contact</a></li>
         </ul>
       </nav>
+      <div class="lang-toggle" aria-label="Language toggle">
+        <button type="button" data-lang="en" class="is-active" aria-pressed="true">EN</button>
+        <span class="divider">|</span>
+        <button type="button" data-lang="es" aria-pressed="false">ES</button>
+      </div>
       <button type="button" class="theme-toggle" aria-label="Switch color mode" aria-pressed="false">
         <span class="theme-icon">🌙</span>
       </button>
@@ -52,11 +63,11 @@
   <main id="main">
     <!-- Hero: headline, bio, social bar -->
     <section id="home" class="hero" aria-labelledby="hero-heading">
-      <h1 id="hero-heading">Malen0 Santndr</h1>
-      <p class="hero-tagline">Maleno Santander — Machine Learning &amp; Deep Learning Engineer</p>
-      <p class="hero-bio">
-        I build scalable ML and deep learning systems. Currently focused on recommendation systems
-        and production-ready models. This site is the hub for projects, writing, and contact.
+      <h1 id="hero-heading" data-i18n="hero_name">Maleno Santander</h1>
+      <p class="hero-tagline" data-i18n="hero_title">Machine Learning and Deep Learning Engineer</p>
+      <p class="hero-bio" data-i18n="hero_bio">
+        I am a machine learning and deep learning engineer with a passion for building scalable and efficient machine learning models.
+        I am currently working on a project to build a recommendation system for a retail company.
       </p>
 
       <!-- Social links: simple SVG icons, white, glow on hover -->
@@ -96,7 +107,7 @@
     </section>
 
     <section id="about" class="section" aria-labelledby="about-heading">
-      <h2 id="about-heading">About</h2>
+      <h2 id="about-heading" data-i18n="nav_about">About</h2>
       <p>
         Placeholder section for your background, skills, and what you work on. Replace this copy
         with a longer bio, education, and tools you use (Python, PyTorch, scikit-learn, etc.).
@@ -104,7 +115,7 @@
     </section>
 
     <section id="projects" class="section" aria-labelledby="projects-heading">
-      <h2 id="projects-heading">Projects</h2>
+      <h2 id="projects-heading" data-i18n="nav_projects">Projects</h2>
       <p>
         Showcase ML/DL projects here: links to repos, demos, and short descriptions. This block
         is ready for you to swap in cards or a list as the site grows.
@@ -112,11 +123,9 @@
     </section>
 
     <section id="contact" class="section" aria-labelledby="contact-heading">
-      <h2 id="contact-heading">Contact</h2>
-      <p>
-        Add your email, a form, or Calendly link here. For now this is a stub—wire it up when you
-        are ready to receive messages.
-      </p>
+      <h2 id="contact-heading" data-i18n="contact_title">Contact</h2>
+      <p data-i18n="contact_subtitle">Get in touch</p>
+      <button type="button" class="btn" data-i18n="contact_button">Send Message</button>
     </section>
   </main>
   <footer>

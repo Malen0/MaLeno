@@ -70,6 +70,37 @@ body::before {
 .site-logo:hover { color: var(--accent); }
 
 .header-right { display: flex; align-items: center; gap: .5rem; }
+.lang-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.8rem;
+  user-select: none;
+}
+.lang-toggle button {
+  border: none;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  font: inherit;
+  padding: 0.25rem 0.2rem;
+  transition: opacity 0.3s ease, color 0.3s ease;
+}
+.lang-toggle .divider {
+  color: color-mix(in srgb, var(--text) 50%, transparent);
+  opacity: 0.7;
+}
+.lang-toggle button.is-active {
+  color: var(--accent);
+  opacity: 1;
+}
+.lang-toggle button:not(.is-active) {
+  opacity: 0.65;
+}
+.lang-toggle button:hover,
+.lang-toggle button:focus-visible {
+  opacity: 1;
+}
 .nav-menu { display: flex; align-items: center; gap: .25rem; list-style: none; }
 .nav-menu a { color: var(--text); text-decoration: none; font-size: .8rem; padding: .5rem .85rem; position: relative; }
 .nav-menu a::after {
@@ -136,6 +167,27 @@ html[data-theme="light"] .social-bar a:hover, html[data-theme="light"] .social-b
 .article-card .excerpt { font-size: .82rem; color: var(--muted); flex-grow: 1; margin-bottom: 1rem; }
 .article-card .read-more { font-size: .8rem; font-weight: 600; color: var(--accent); text-decoration: none; }
 .article-card .read-more:hover, .article-card .read-more:focus-visible { color: var(--accent-green); letter-spacing: .04em; }
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1rem;
+  padding: 0.65rem 1rem;
+  border-radius: 6px;
+  border: 1px solid var(--card-border);
+  background: transparent;
+  color: var(--text);
+  font: inherit;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+.btn:hover,
+.btn:focus-visible {
+  border-color: color-mix(in srgb, var(--accent) 55%, var(--card-border));
+  box-shadow: 0 0 18px color-mix(in srgb, var(--accent) 16%, transparent);
+}
 
 footer {
   max-width: 72rem;

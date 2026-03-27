@@ -5,12 +5,68 @@
   "use strict";
 
   var STORAGE_KEY = "portfolio-theme";
+  var LANG_KEY = "lang";
   var root = document.documentElement;
   var navToggle = document.querySelector(".nav-toggle");
   var navMenu = document.querySelector(".nav-menu");
   var navLinks = document.querySelectorAll(".nav-menu a[data-nav]");
   var themeToggle = document.querySelector(".theme-toggle");
   var themeIcon = document.querySelector(".theme-icon");
+  var langEn = document.querySelector('[data-lang="en"]');
+  var langEs = document.querySelector('[data-lang="es"]');
+
+  var translations = {
+    en: {
+      nav_home: "Home",
+      nav_about: "About",
+      nav_projects: "Projects",
+      nav_blog: "Blog",
+      nav_contact: "Contact",
+      hero_name: "Maleno Santander",
+      hero_title: "Machine Learning and Deep Learning Engineer",
+      hero_bio:
+        "I am a machine learning and deep learning engineer with a passion for building scalable and efficient machine learning models. I am currently working on a project to build a recommendation system for a retail company.",
+      blog_title: "Blog",
+      blog_subtitle: "Articles about AI, ML and Web Development",
+      read_more: "Read more →",
+      cat_ai: "AI",
+      cat_ml: "Machine Learning",
+      cat_dl: "Deep Learning",
+      cat_web: "Web Development",
+      post_1_title: "The Future of Large Language Models in 2026",
+      post_2_title: "Building Recommendation Systems with Python",
+      post_3_title: "Getting Started with UV: The Fastest Python Package Manager",
+      post_4_title: "Deep Learning vs Traditional ML: When to Use Each",
+      contact_title: "Contact",
+      contact_subtitle: "Get in touch",
+      contact_button: "Send Message",
+    },
+    es: {
+      nav_home: "Inicio",
+      nav_about: "Sobre mí",
+      nav_projects: "Proyectos",
+      nav_blog: "Blog",
+      nav_contact: "Contacto",
+      hero_name: "Maleno Santander",
+      hero_title: "Ingeniero de Machine Learning y Deep Learning",
+      hero_bio:
+        "Soy un ingeniero de machine learning y deep learning con pasión por construir modelos de aprendizaje automático escalables y eficientes. Actualmente trabajo en un proyecto para construir un sistema de recomendación para una empresa de retail.",
+      blog_title: "Blog",
+      blog_subtitle: "Artículos sobre IA, ML y Desarrollo Web",
+      read_more: "Leer más →",
+      cat_ai: "IA",
+      cat_ml: "Machine Learning",
+      cat_dl: "Deep Learning",
+      cat_web: "Desarrollo Web",
+      post_1_title: "El Futuro de los Modelos de Lenguaje en 2026",
+      post_2_title: "Construyendo Sistemas de Recomendación con Python",
+      post_3_title: "Comenzando con UV: El Gestor de Paquetes más Rápido",
+      post_4_title: "Deep Learning vs ML Tradicional: Cuándo Usar Cada Uno",
+      contact_title: "Contacto",
+      contact_subtitle: "Ponte en contacto",
+      contact_button: "Enviar Mensaje",
+    },
+  };
 
   function applyTheme(theme) {
     var mode = theme === "light" ? "light" : "dark";
@@ -29,6 +85,44 @@
 
   initTheme();
 
+  function switchLanguage(lang, persist) {
+    var next = lang === "es" ? "es" : "en";
+    if (persist) localStorage.setItem(LANG_KEY, next);
+    root.setAttribute("lang", next);
+
+    if (langEn && langEs) {
+      langEn.classList.toggle("is-active", next === "en");
+      langEs.classList.toggle("is-active", next === "es");
+      langEn.setAttribute("aria-pressed", next === "en" ? "true" : "false");
+      langEs.setAttribute("aria-pressed", next === "es" ? "true" : "false");
+    }
+
+    var dict = translations[next];
+    document.querySelectorAll("[data-i18n]").forEach(function (el) {
+      var key = el.getAttribute("data-i18n");
+      if (!key || !dict[key]) return;
+      el.textContent = dict[key];
+    });
+  }
+
+  function initLanguage() {
+    var saved = localStorage.getItem(LANG_KEY) || "en";
+    switchLanguage(saved, false);
+  }
+
+  initLanguage();
+
+  if (langEn) {
+    langEn.addEventListener("click", function () {
+      switchLanguage("en", true);
+    });
+  }
+  if (langEs) {
+    langEs.addEventListener("click", function () {
+      switchLanguage("es", true);
+    });
+  }
+
   if (themeToggle) {
     themeToggle.addEventListener("click", function () {
       var current = root.getAttribute("data-theme") === "light" ? "light" : "dark";
@@ -37,6 +131,11 @@
       applyTheme(next);
     });
   }
+
+  window.addEventListener("storage", function (e) {
+    if (e.key === STORAGE_KEY && e.newValue) applyTheme(e.newValue);
+    if (e.key === LANG_KEY && e.newValue) switchLanguage(e.newValue, false);
+  });
 
   if (navToggle && navMenu) {
     navToggle.addEventListener("click", function () {
