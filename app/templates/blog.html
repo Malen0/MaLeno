@@ -4,6 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Blog — ML/DL</title>
+  <script>
+    (function () {
+      var theme = localStorage.getItem("portfolio-theme") || "dark";
+      document.documentElement.setAttribute("data-theme", theme);
+    })();
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -14,26 +20,31 @@
 
   <header class="site-header" role="banner">
     <a class="site-logo" href="/">ML/DL</a>
-    <button
-      type="button"
-      class="nav-toggle"
-      aria-label="Open menu"
-      aria-expanded="false"
-      aria-controls="primary-nav"
-    >
-      <span></span>
-      <span></span>
-      <span></span>
-    </button>
-    <nav id="primary-nav" aria-label="Primary">
-      <ul class="nav-menu">
-        <li><a href="/" data-nav="home">Home</a></li>
-        <li><a href="/#about">About</a></li>
-        <li><a href="/#projects">Projects</a></li>
-        <li><a href="/blog" data-nav="blog">Blog</a></li>
-        <li><a href="/#contact">Contact</a></li>
-      </ul>
-    </nav>
+    <div class="header-right">
+      <button
+        type="button"
+        class="nav-toggle"
+        aria-label="Open menu"
+        aria-expanded="false"
+        aria-controls="primary-nav"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <nav id="primary-nav" aria-label="Primary">
+        <ul class="nav-menu">
+          <li><a href="/" data-nav="home">Home</a></li>
+          <li><a href="/#about">About</a></li>
+          <li><a href="/#projects">Projects</a></li>
+          <li><a href="/blog" data-nav="blog">Blog</a></li>
+          <li><a href="/#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <button type="button" class="theme-toggle" aria-label="Switch color mode" aria-pressed="false">
+        <span class="theme-icon">🌙</span>
+      </button>
+    </div>
   </header>
 
   <main id="main">
@@ -95,6 +106,9 @@
       </div>
     </div>
   </main>
+  <footer>
+    © 2026 Maleno Santander — ML/DL Portfolio
+  </footer>
 
   <script src="/static/js/nav.js" defer></script>
 </body>

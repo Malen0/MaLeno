@@ -1,35 +1,62 @@
 /**
- * Site navigation: mobile hamburger + active link state by pathname.
+ * Navigation + theme toggle (dark/light) with localStorage persistence.
  */
 (function () {
   "use strict";
 
-  const toggle = document.querySelector(".nav-toggle");
-  const menu = document.querySelector(".nav-menu");
-  const links = document.querySelectorAll(".nav-menu a[data-nav]");
+  var STORAGE_KEY = "portfolio-theme";
+  var root = document.documentElement;
+  var navToggle = document.querySelector(".nav-toggle");
+  var navMenu = document.querySelector(".nav-menu");
+  var navLinks = document.querySelectorAll(".nav-menu a[data-nav]");
+  var themeToggle = document.querySelector(".theme-toggle");
+  var themeIcon = document.querySelector(".theme-icon");
 
-  /* Hamburger: open / close mobile menu */
-  if (toggle && menu) {
-    toggle.addEventListener("click", function () {
-      const open = menu.classList.toggle("is-open");
-      toggle.setAttribute("aria-expanded", open ? "true" : "false");
+  function applyTheme(theme) {
+    var mode = theme === "light" ? "light" : "dark";
+    root.setAttribute("data-theme", mode);
+    if (themeToggle && themeIcon) {
+      themeToggle.setAttribute("aria-label", mode === "dark" ? "Switch to light mode" : "Switch to dark mode");
+      themeToggle.setAttribute("aria-pressed", mode === "light" ? "true" : "false");
+      themeIcon.textContent = mode === "dark" ? "🌙" : "☀️";
+    }
+  }
+
+  function initTheme() {
+    var saved = localStorage.getItem(STORAGE_KEY) || "dark";
+    applyTheme(saved);
+  }
+
+  initTheme();
+
+  if (themeToggle) {
+    themeToggle.addEventListener("click", function () {
+      var current = root.getAttribute("data-theme") === "light" ? "light" : "dark";
+      var next = current === "dark" ? "light" : "dark";
+      localStorage.setItem(STORAGE_KEY, next);
+      applyTheme(next);
+    });
+  }
+
+  if (navToggle && navMenu) {
+    navToggle.addEventListener("click", function () {
+      var open = navMenu.classList.toggle("is-open");
+      navToggle.setAttribute("aria-expanded", open ? "true" : "false");
     });
 
-    /* Close menu when a link is clicked (mobile) */
-    menu.querySelectorAll("a").forEach(function (anchor) {
+    navMenu.querySelectorAll("a").forEach(function (anchor) {
       anchor.addEventListener("click", function () {
         if (window.matchMedia("(max-width: 768px)").matches) {
-          menu.classList.remove("is-open");
-          toggle.setAttribute("aria-expanded", "false");
+          navMenu.classList.remove("is-open");
+          navToggle.setAttribute("aria-expanded", "false");
         }
       });
     });
   }
 
-  /* Highlight active nav item from data-nav + current path */
-  const path = window.location.pathname.replace(/\/$/, "") || "/";
-  links.forEach(function (link) {
-    const nav = link.getAttribute("data-nav");
+  var path = window.location.pathname.replace(/\/$/, "") || "/";
+  navLinks.forEach(function (link) {
+    var nav = link.getAttribute("data-nav");
     if (!nav) return;
     if (nav === "home" && (path === "/" || path === "")) {
       link.classList.add("is-active");
