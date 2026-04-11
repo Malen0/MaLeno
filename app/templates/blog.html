@@ -20,6 +20,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/static/css/styles.css">
+  <link rel="stylesheet" href="/static/css/chat.css">
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -121,6 +122,48 @@
     © 2026 Maleno Santander — ML/DL Portfolio
   </footer>
 
+  <!-- Optional: copy app/static/js/config.example.js → app/static/js/config.js for overrides -->
+  <div id="chat-widget-root">
+    <button type="button" class="chat-fab" id="chat-fab" aria-controls="chat-panel" aria-expanded="false">💬</button>
+    <section
+      id="chat-panel"
+      class="chat-panel"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="chat-title"
+      aria-hidden="true"
+    >
+      <div class="chat-i18n-src" aria-hidden="true">
+        <span data-i18n="chat_welcome">Hi! I'm Maleno's AI assistant. Ask me anything about ML, AI, or software development! 🤖</span>
+        <span data-i18n="chat_err_missing_key">⚠️ API key not configured. Add GOOGLE_AI_API_KEY to the project root `.env` file (never put API keys in config.js in the browser).</span>
+        <span data-i18n="chat_err_connect">Sorry, I couldn't connect to the AI. Please try again.</span>
+        <span data-i18n="chat_err_rate_limit">Too many requests. Please wait a moment and try again.</span>
+      </div>
+      <header class="chat-header">
+        <div class="chat-header-titles">
+          <h3 id="chat-title" data-i18n="chat_title">AI Assistant</h3>
+          <p data-i18n="chat_subtitle">Powered by Google Gemini</p>
+        </div>
+        <div class="chat-header-actions">
+          <button type="button" class="chat-icon-btn" id="chat-clear" data-i18n="chat_clear">Clear</button>
+          <button type="button" class="chat-icon-btn" id="chat-close" aria-label="Close chat">✕</button>
+        </div>
+      </header>
+      <div id="chat-messages" class="chat-messages">
+        <div id="chat-typing" class="chat-typing" aria-live="polite">
+          <span class="dot"></span>
+          <span class="dot"></span>
+          <span class="dot"></span>
+        </div>
+      </div>
+      <div class="chat-input-row">
+        <textarea id="chat-input" class="chat-input" rows="2" autocomplete="off"></textarea>
+        <button type="button" class="chat-send" id="chat-send" aria-label="Send">→</button>
+      </div>
+    </section>
+  </div>
+
   <script src="/static/js/nav.js" defer></script>
+  <script src="/static/js/chat.js" defer></script>
 </body>
 </html>

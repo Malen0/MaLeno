@@ -2,10 +2,13 @@
 
 from pathlib import Path
 
+from dotenv import load_dotenv
 from fastapi import FastAPI
 from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
 from starlette.types import Scope
+
+from app.gemini_chat import router as gemini_router
 
 app = FastAPI(
     title="ML/DL",
@@ -14,8 +17,13 @@ app = FastAPI(
 )
 
 APP_DIR = Path(__file__).resolve().parent
+ROOT_DIR = APP_DIR.parent
 TEMPLATES_DIR = APP_DIR / "templates"
 STATIC_DIR = APP_DIR / "static"
+
+load_dotenv(ROOT_DIR / ".env")
+
+app.include_router(gemini_router)
 
 class NoCacheStaticFiles(StaticFiles):
     async def get_response(self, path: str, scope: Scope):  # type: ignore[override]

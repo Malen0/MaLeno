@@ -40,6 +40,20 @@
       contact_title: "Contact",
       contact_subtitle: "Get in touch",
       contact_button: "Send Message",
+      chat_title: "AI Assistant",
+      chat_subtitle: "Powered by Google Gemini",
+      chat_placeholder: "Ask me anything…",
+      chat_send: "Send",
+      chat_clear: "Clear",
+      chat_fab_aria: "Open chat assistant",
+      chat_close_aria: "Close chat",
+      chat_clear_aria: "Clear chat history",
+      chat_welcome:
+        "Hi! I'm Maleno's AI assistant. Ask me anything about ML, AI, or software development! 🤖",
+      chat_err_missing_key:
+        "⚠️ API key not configured. Add GOOGLE_AI_API_KEY to the project root `.env` file (never put API keys in config.js in the browser).",
+      chat_err_connect: "Sorry, I couldn't connect to the AI. Please try again.",
+      chat_err_rate_limit: "Too many requests. Please wait a moment and try again.",
     },
     es: {
       nav_home: "Inicio",
@@ -65,6 +79,20 @@
       contact_title: "Contacto",
       contact_subtitle: "Ponte en contacto",
       contact_button: "Enviar Mensaje",
+      chat_title: "Asistente IA",
+      chat_subtitle: "Con la tecnología de Google Gemini",
+      chat_placeholder: "Pregúntame algo…",
+      chat_send: "Enviar",
+      chat_clear: "Borrar",
+      chat_fab_aria: "Abrir asistente de chat",
+      chat_close_aria: "Cerrar chat",
+      chat_clear_aria: "Borrar historial del chat",
+      chat_welcome:
+        "¡Hola! Soy el asistente IA de Maleno. ¡Pregúntame sobre ML, IA o desarrollo de software! 🤖",
+      chat_err_missing_key:
+        "⚠️ API key no configurada. Añade GOOGLE_AI_API_KEY en el archivo `.env` en la raíz del proyecto (nunca pongas claves en config.js en el navegador).",
+      chat_err_connect: "No pude conectar con la IA. Inténtalo de nuevo.",
+      chat_err_rate_limit: "Demasiadas solicitudes. Espera un momento e inténtalo de nuevo.",
     },
   };
 
@@ -103,6 +131,10 @@
       if (!key || !dict[key]) return;
       el.textContent = dict[key];
     });
+
+    document.dispatchEvent(
+      new CustomEvent("portfolio-lang-changed", { detail: { lang: next } }),
+    );
   }
 
   function initLanguage() {
